@@ -11,7 +11,7 @@ app.use(express.static("public"));
 
 // Get notes from database
 app.get("/api/notes", function(req, res) {
-  dbConnection.query("SELECT title, note_body FROM notes", 
+  dbConnection.query("SELECT * FROM notes", 
   function(err, notesDB) {
     res.json(notesDB);
   })
@@ -34,7 +34,7 @@ app.post("/api/notes", function(req, res) {
 });
 
 app.delete("/api/notes", function (req, res) {
-  dbConnection.query("DELETE FROM notes WHERE id = ?",req.body.id, function (err, notesDB) {
+  dbConnection.query("DELETE FROM notes WHERE id = ?", req.body.id, function (err, notesDB) {
     if (err) {
       throw err;
     }
@@ -52,9 +52,9 @@ app.get("/notes", function(req, res) {
   res.sendFile(path.join(__dirname, "./public/html/notes.html"));
 });
 
-app.get("*", function(req, res) {
-  res.send(`<h1>404: Woah woah woah bro. You messed up BIG time.</h1>`)
-})
+// app.get("*", function(req, res) {
+//   res.send(`<h1>404: Woah woah woah. You messed up BIG time.</h1>`)
+// })
 
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);

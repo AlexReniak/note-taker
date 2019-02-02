@@ -14,5 +14,15 @@ nav {
 
 .note-logo {
   padding: 10px;
-  background: white;
+  background: #0086b3;
+  color: white;
+  text-decoration: none;
+}
+
+.note-logo:hover {
+  color: white;
+}
+
+.note-header {
+  border-bottom: 2px solid #e6e6e6
 }

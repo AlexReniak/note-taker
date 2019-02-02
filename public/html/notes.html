@@ -12,13 +12,17 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="./index.html">note-taker</a>
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand note-logo" href="/">note-taker</a>
   </nav>
   <div class="container">
     <div class="row my-5">
       <div class="col-4">
-        <div id="note-side-view"></div>
+        <h4 class="note-header">Notes</h4>
+        <div class="card my-3 d-flex justify-content-start" style="width: 18rem;">
+          <ul class="list-group list-group-flush" id="note-side-view">
+          </ul>
+        </div>
       </div>
       <div class="col-8">
         <div class="note-content"></div>
