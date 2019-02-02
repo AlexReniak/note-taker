@@ -10,25 +10,37 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Get notes from database
-app.get("api/notes", function(req, res) {
-  dbConnection.query("SELECT * FROM notes", function(err, notesDB) {
-    if (err) {
-      throw err;
-    }
+app.get("/api/notes", function(req, res) {
+  dbConnection.query("SELECT title, note_body FROM notes", 
+  function(err, notesDB) {
     res.json(notesDB);
   })
 })
 
 // Save new notes to database
 app.post("/api/notes", function(req, res) {
-  dbConnection.query("INSERT INTO notes SET ?", req.body, function(err, notesResult) {
+
+ dbConnection.query("INSERT INTO notes SET ?", req.body, 
+ function(err, notesDB) {
+  if (err) {
+    throw err;
+  }
+
+  console.log("This message is second");
+
+  console.log(req.body);
+  console.log(notesDB)
+ })
+});
+
+app.delete("/api/notes", function (req, res) {
+  dbConnection.query("DELETE FROM notes WHERE id = ?",req.body.id, function (err, notesDB) {
     if (err) {
       throw err;
     }
-    
-    
-  });
-});
+    console.log(res.json(notesDB));
+  })
+})
 
 // Path to index.html
 app.get("/", function(req, res) {
@@ -41,7 +53,7 @@ app.get("/notes", function(req, res) {
 });
 
 app.get("*", function(req, res) {
-  res.send(`<h1>404: Woah woah woah. You messed up BIG time.</h1>`)
+  res.send(`<h1>404: Woah woah woah bro. You messed up BIG time.</h1>`)
 })
 
 app.listen(PORT, function() {

@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $(".enter-btn").on("click", function {
+  $(".enter-btn").on("click", function(e) {
     
     event.preventDefault();
     

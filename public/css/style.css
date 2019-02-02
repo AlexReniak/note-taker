@@ -4,9 +4,15 @@ body {
 
 nav {
   background:#0086b3;
+  border-bottom: 2px solid yellow;
 }
 
 .jumbotron {
   background: #ccf2ff;
   margin: 10px;
+}
+
+.note-logo {
+  padding: 10px;
+  background: white;
 }
