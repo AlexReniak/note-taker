@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
 
   // Your password
   password: "admin",
-  database: "notes_db"
+  database: "notetaker_db"
 });
 
 module.exports = connection
