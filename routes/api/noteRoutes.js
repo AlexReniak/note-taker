@@ -24,6 +24,9 @@ router
    console.log(notesDB)
   });
 })
+// .post(function(req, res) {
+//   dbConnection.query("UPDATE notes SET ? WHERE ?", [req.body, req.body.id])
+// })
 .delete(function (req, res) {
 
   dbConnection.query("DELETE FROM notes WHERE id = ?", req.body.id, function (err, notesDB) {
