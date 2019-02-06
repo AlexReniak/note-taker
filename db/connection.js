@@ -1,17 +1,23 @@
-const mysql = require("mysql");
+var mysql = require("mysql");
 
-const connection = mysql.createConnection({
-  host: "localhost",
+var connection;
 
-  // Your port; if not 3306
-  port: 3306,
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "admin",
+    database: "notetaker_db"
+  });
+}
 
-  // Your username
-  user: "root",
+connection.config.typeCast = function(field, next) {
+  if (field.type == "TINY" && field.length == 1) {
+    return field.string() == "1"; // 1 = true, 0 = false
+  }
+  return next();
+};
 
-  // Your password
-  password: "admin",
-  database: "notetaker_db"
-});
-
-module.exports = connection
+module.exports = connection;

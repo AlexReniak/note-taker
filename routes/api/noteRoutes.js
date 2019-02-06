@@ -6,35 +6,34 @@ const dbConnection = require("../../db/connection");
 router
   .route("/")
   .get(function(req, res) {
+    dbConnection.query("SELECT * FROM notes", 
+    function(err, notesDB) {
+      res.json(notesDB);
+    });
+  })
+  .post(function(req, res) {
+    dbConnection.query("INSERT INTO notes SET ?", req.body,
+    function(err, notesDB) {
+      if (err) {
+        throw err;
+      };
 
-  dbConnection.query("SELECT * FROM notes", 
-  function(err, notesDB) {
-    res.json(notesDB);
+      console.log(req.body)
+      console.log(notesDB)
+    })
+  })
+
+ router
+  .route("/:id")
+  .delete(function (req, res) {
+    dbConnection.query("DELETE FROM notes WHERE id = ?", req.params.id, 
+    function (err, notesDB) {
+      if (err) {
+        throw err;
+      };
+      console.log(res.json(notesDB));
+    });
   });
-})
-.post(function(req, res) { 
-  dbConnection.query("INSERT INTO notes SET ?", req.body, 
-  function(err, notesDB) {
 
-   if (err) {
-     throw err;
-   }
-
-   console.log(req.body);
-   console.log(notesDB)
-  });
-})
-// .post(function(req, res) {
-//   dbConnection.query("UPDATE notes SET ? WHERE ?", [req.body, req.body.id])
-// })
-.delete(function (req, res) {
-
-  dbConnection.query("DELETE FROM notes WHERE id = ?", req.body.id, function (err, notesDB) {
-    if (err) {
-      throw err;
-    }
-    console.log(res.json(notesDB));
-  });
- });
 
 module.exports = router;

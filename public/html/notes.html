@@ -16,57 +16,51 @@
     <a class="navbar-brand note-logo" href="/">note-taker</a>
   </nav>
   <div class="container">
-    <button type="button" class="btn btn-warning my-2 d-flex justify-content-end" data-toggle="modal" data-target="#new-note-modal" id="add-notes">Add Notes</button>
-    <div class="row my-2">
-      <div class="col-4">
-        <h4 class="note-header">Notes</h4>
-        <div class="card my-3" style="width: 18rem;">
-          <div id="note-side-view"></div>
-        </div>
-      </div>
-      <div class="col-8">
-        <div class="note-content">
-          <h2 class="note-title"></h2>
-          <div class="note-body"></div>
-        </div>
+    <button type="button" class="btn btn-warning my-2 d-flex justify-content-end" data-toggle="modal" data-target="#new-note-modal"
+      id="add-notes">Add Notes</button>
+    <h4 class="note-header d-flex justify-content-center my-3">Notes</h4>
+    <div class="row justify-content-center">
+      <div class="card my-3 d-flex justify-content-center" style="width: 36rem;">
+        <div id="note-side-view"></div>
       </div>
     </div>
+  </div>
 
-    <!--New note modal-->
-    <div class="modal fade" id="new-note-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Add a new note</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="note-title">Note Title</label>
-                <input type="text" class="form-control" id="note-title-input" placeholder="Title">
-              </div>
-              <div class="form-group">
-                <label for="note-body">Note body</label>
-                <input type="text" class="form-control" id="note-body-input" placeholder="Type some stuff in here!">
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="save-new-note">Save note</button>
-          </div>
+  <!--New note modal-->
+  <div class="modal fade" id="new-note-modal" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add a new note</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="note-title">Note Title</label>
+              <input type="text" class="form-control" id="note-title-input" placeholder="Title">
+            </div>
+            <div class="form-group">
+              <label for="note-body">Note body</label>
+              <input type="text" class="form-control" id="note-body-input" placeholder="Type some stuff in here!">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="save-new-note">Save note</button>
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
   <script src="../js/app.js"></script>
 </body>
 
