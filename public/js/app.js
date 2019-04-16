@@ -1,5 +1,6 @@
 
 $(document).ready(function () {
+  
 
   // Generates notes to page
   const renderNotes = () => {
@@ -22,24 +23,24 @@ $(document).ready(function () {
         let noteDate = moment(noteData[i].created_at).format("MM/DD/YYYY");
 
         const notesAccordian =
-      `<div class="accordion" id="accordion${noteID}" data-id="${noteID}" data-title="${noteTitle}" data-body="${noteBody}" data-date="${noteDate}">
-      <div class="card">
-        <div class="card-header" id="heading${noteID}">
-          <h2 class="mb-0 d-flex justify-content-center note-title">
-            <button class="btn mx-3 note-btn" type="button" data-toggle="collapse" data-target="#collapse${noteID}" aria-expanded="true" aria-controls="collapse${noteID}">
-              ${noteTitle}
-            </button>
-            <i class="far fa-trash-alt trash-icon d-flex justify-content-end my-1 mx-1"></i>
-          </h2>
-        </div>
-        <div id="collapse${noteID}" class="collapse show" aria-labelledby="heading${noteID}" data-parent="#accordion${noteID}">
-          <div class="card-body text-center">
-            ${noteBody}
+        `<div class="accordion" id="accordion${noteID}" data-id="${noteID}" data-title="${noteTitle}" data-body="${noteBody}" data-date="${noteDate}">
+        <div class="card">
+          <div class="card-header" id="heading${noteID}">
+            <h2 class="mb-0 d-flex justify-content-center note-title">
+              <button class="btn mx-3 note-btn" type="button" data-toggle="collapse" data-target="#collapse${noteID}" aria-expanded="true" aria-controls="collapse${noteID}">
+                ${noteTitle}
+              </button>
+              <i class="far fa-trash-alt trash-icon d-flex justify-content-end my-1 mx-1"></i>
+            </h2>
           </div>
-          <div class="border-top d-flex justify-content-center">Created on: ${noteDate}</div>
+          <div id="collapse${noteID}" class="collapse show" aria-labelledby="heading${noteID}" data-parent="#accordion${noteID}">
+            <div class="card-body text-center">
+              ${noteBody}
+            </div>
+            <div class="border-top d-flex justify-content-center">Created on: ${noteDate}</div>
+          </div>
         </div>
-      </div>
-    </div>`
+      </div>`
 
         noteList.push(notesAccordian);
       };
@@ -60,8 +61,7 @@ $(document).ready(function () {
         url: "/api/notes/" + deleteID,
         method: "DELETE",
       }).then(function() {
-        renderNotes();
-        $(`#accordion${deleteID}`).remove();
+        location.reload();
       });
     }
     else {
@@ -72,6 +72,7 @@ $(document).ready(function () {
   // Add new notes
   $(document).on("click", "#save-new-note", function(e) {
     e.preventDefault();
+    
 
     let newNote = {
       title: $("#note-title-input").val(),
@@ -85,9 +86,9 @@ $(document).ready(function () {
         url: "/api/notes",
         method: "POST",
         data: newNote,
-        success: renderNotes()
+        success: location.reload()
+        }) 
       });
-  });
 
-  renderNotes();
-});
+    renderNotes();
+  });
